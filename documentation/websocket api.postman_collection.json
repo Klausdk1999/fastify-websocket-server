@@ -1,0 +1,85 @@
+{
+	"info": {
+		"_postman_id": "76ec6178-5d52-4375-841e-9a7a9048d643",
+		"name": "websocket api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16623976"
+	},
+	"item": [
+		{
+			"name": "/post",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "http-access-key",
+						"value": "1234567890123456789012345678901234567890123456789012345678901234",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"klaus2\",\r\n    \"message\":\"testando 232324\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://fastify-websocket-server-production.up.railway.app/post",
+					"protocol": "https",
+					"host": [
+						"fastify-websocket-server-production",
+						"up",
+						"railway",
+						"app"
+					],
+					"path": [
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/status",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "http-access-key",
+						"value": "1234567890123456789012345678901234567890123456789012345678901234",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"klaus\",\r\n    \"message\":\"testando 1114\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://fastify-websocket-server-production.up.railway.app/status",
+					"protocol": "https",
+					"host": [
+						"fastify-websocket-server-production",
+						"up",
+						"railway",
+						"app"
+					],
+					"path": [
+						"status"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
