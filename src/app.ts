@@ -3,6 +3,7 @@ import Fastify, {
   FastifyReply,
   FastifyRequest,
 } from "fastify";
+import cors from "@fastify/cors";
 import dotenv from "dotenv";
 import { Server, IncomingMessage, ServerResponse } from "http";
 import WebSocket, { Server as WebSocketServer } from "ws";
@@ -15,6 +16,10 @@ export const fastify: FastifyInstance<Server, IncomingMessage, ServerResponse> =
     logger: true,
   });
 
+fastify.register(cors, {
+  origin: "*",
+  methods: ["GET", "POST"],
+});
 // Create a WebSocket server
 const wss = new WebSocketServer({ noServer: true });
 
@@ -58,7 +63,15 @@ interface PostRequestBody {
   id: string;
   message: string;
 }
-
+fastify.get(
+  "/status",
+  {
+    schema: {},
+  },
+  (_: FastifyRequest, reply: FastifyReply) => {
+    return reply.status(200).send({ message: `Servidor online.` });
+  }
+);
 // HTTP route for sending messages
 fastify.post<{ Body: PostRequestBody }>("/post", {
   preValidation: (request, reply, done) => {
