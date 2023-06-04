@@ -46,7 +46,6 @@ wss.on("connection", (ws: WebSocket, request: IncomingMessage) => {
 // Upgrade HTTP connections to WebSocket connections
 fastify.server.on("upgrade", (request, socket, head) => {
   // Check the authentication token in the URL
-  console.log(request.headers["ws-access-key"]);
   if (request.headers["ws-access-key"] !== process.env.WS_ACCESS_KEY) {
     socket.write("HTTP/1.1 401 Unauthorized\r\n\r\n");
     socket.destroy();
@@ -76,7 +75,6 @@ fastify.get(
 fastify.post<{ Body: PostRequestBody }>("/post", {
   preValidation: (request, reply, done) => {
     // Check for API key in headers
-    console.log(request.headers["http-access-key"]);
     if (request.headers["http-access-key"] !== process.env.HTTP_ACCESS_KEY) {
       reply.status(401).send({ error: "Unauthorized" });
       return done(new Error("Unauthorized"));
