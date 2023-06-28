@@ -8,7 +8,7 @@ const char* password = "kf156873";
 // WebSocket server details
 const char* websockets_server_host = "fastify-websocket-server-production.up.railway.app";
 const int websockets_server_port = 443;
-const char* websockets_server_path = "/id123123";
+const char* websockets_server_path = "/00f138a0-e8ac-4497-8eb9-057fcf2dec0d";
 
 // Define the WebSocket client
 WebSocketsClient webSocket;
@@ -58,7 +58,8 @@ void webSocketEvent(WStype_t type, uint8_t* payload, size_t length) {
       break;
     case WStype_TEXT:
       Serial.println("[WSc] Received text: " + String((char*)payload));
-      if (String((char*)payload) == "one") {
+      // check for coffe item id
+      if (String((char*)payload) == "2285feeb-ed3a-4e1c-92f8-df4ff120b3d0") {
         digitalWrite(ledPin, LOW);
         delay(5000);
         digitalWrite(ledPin, HIGH);
